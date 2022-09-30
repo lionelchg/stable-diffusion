@@ -19,6 +19,11 @@ from ldm.util import instantiate_from_config
 from ldm.models.diffusion.ddim import DDIMSampler
 from ldm.models.diffusion.plms import PLMSSampler
 
+from pathlib import Path
+
+# Absolute path of the directory
+stable_diffusion_dir = Path('/scratch/cfd/cheng/DL/StableDiffusion/stable-diffusion')
+
 
 def chunk(it, size):
     it = iter(it)
@@ -140,7 +145,7 @@ def main():
     parser.add_argument(
         "--n_samples",
         type=int,
-        default=2,
+        default=1,
         help="how many samples to produce for each given prompt. A.k.a batch size",
     )
     parser.add_argument(
@@ -170,13 +175,13 @@ def main():
     parser.add_argument(
         "--config",
         type=str,
-        default="configs/stable-diffusion/v1-inference.yaml",
+        default=stable_diffusion_dir / "configs/stable-diffusion/v1-inference.yaml",
         help="path to config which constructs model",
     )
     parser.add_argument(
         "--ckpt",
         type=str,
-        default="models/ldm/stable-diffusion-v1/model.ckpt",
+        default=stable_diffusion_dir / "models/ldm/stable-diffusion-v1/model.ckpt",
         help="path to checkpoint of model",
     )
     parser.add_argument(

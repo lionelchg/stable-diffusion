@@ -20,7 +20,10 @@ from ldm.models.diffusion.plms import PLMSSampler
 
 from diffusers.pipelines.stable_diffusion.safety_checker import StableDiffusionSafetyChecker
 from transformers import AutoFeatureExtractor
+from pathlib import Path
 
+# Absolute path of the directory
+stable_diffusion_dir = Path('/scratch/cfd/cheng/DL/StableDiffusion/stable-diffusion')
 
 # load safety model
 safety_model_id = "CompVis/stable-diffusion-safety-checker"
@@ -204,13 +207,13 @@ def main():
     parser.add_argument(
         "--config",
         type=str,
-        default="configs/stable-diffusion/v1-inference.yaml",
+        default=stable_diffusion_dir / "configs/stable-diffusion/v1-inference.yaml",
         help="path to config which constructs model",
     )
     parser.add_argument(
         "--ckpt",
         type=str,
-        default="models/ldm/stable-diffusion-v1/model.ckpt",
+        default=stable_diffusion_dir / "models/ldm/stable-diffusion-v1/model.ckpt",
         help="path to checkpoint of model",
     )
     parser.add_argument(

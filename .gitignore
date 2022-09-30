@@ -1,0 +1,4 @@
+# Python directories
+__pycache__/
+*.egg-info/
+models/ldm/stable-diffusion-v1/
